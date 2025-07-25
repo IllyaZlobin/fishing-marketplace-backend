@@ -1,13 +1,21 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { SignUpPayloadDto } from '~/api/admin/auth/dto/sign-up.payload';
+import { LoginWithCredentialsPayloadDto } from '~/api/admin/auth/dto/login-credentials/payload.dto';
+import { LoginWithCredentialsResponseDto } from '~/api/admin/auth/dto/login-credentials/response.dto';
+import { RegisterAdminPayloadDto } from '~/api/admin/auth/dto/register/payload';
 
 @ApiTags()
+@ApiResponse({ status: HttpStatus.OK, type: LoginWithCredentialsResponseDto })
 @Controller('admin/auth')
 export class AdminAuthController {
-  @Post('sign-up')
-  async signUp(@Body() payload: SignUpPayloadDto) {
+  @Post('register')
+  async register(@Body() payload: RegisterAdminPayloadDto) {
+    return payload;
+  }
+
+  @Post('login/credentials')
+  async loginWithCredentials(@Body() payload: LoginWithCredentialsPayloadDto): Promise<any> {
     return payload;
   }
 }

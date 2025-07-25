@@ -5,4 +5,4 @@ import { AdminAuthController } from '~/api/admin/auth/auth.controller';
 @Module({
   controllers: [AdminAuthController]
 })
-export class AdminAuthModule {}
+export class AuthModule {}

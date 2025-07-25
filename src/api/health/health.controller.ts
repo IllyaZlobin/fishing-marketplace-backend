@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { HealthCheck, HealthCheckService, MemoryHealthIndicator } from '@nestjs/terminus';
+import { AppError } from '~/common/errors';
 
 @Controller('health')
 export class HealthController {
@@ -10,6 +11,7 @@ export class HealthController {
 
   @Get()
   check() {
+    throw new AppError(AppError.Types.INVALID_DATA, 'test');
     return 'ok!';
   }
 

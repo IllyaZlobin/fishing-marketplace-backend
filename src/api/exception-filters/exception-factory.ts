@@ -7,7 +7,7 @@ export const createExceptionFactory = () => {
   return (validationErrors: ValidationError[] = []) => {
     const errors = flattenValidationErrors(validationErrors);
     const formattedErrors = errors.join(', ');
-    return new AppError(AppError.Types.INVALID_DATA, formattedErrors, 400, errors);
+    return new AppError(AppError.Types.INVALID_DATA, formattedErrors, errors);
   };
 };
 

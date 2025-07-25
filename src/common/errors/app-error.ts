@@ -8,7 +8,7 @@ export class AppError extends Error {
   date: Date;
   static Types = AppErrorType;
 
-  constructor(type: AppErrorType, message: string, code?: number, errors?: string[], ...params: any) {
+  constructor(type: AppErrorType, message: string, errors: string[] = [], code?: number, ...params: any) {
     super(...params);
 
     this.type = type;

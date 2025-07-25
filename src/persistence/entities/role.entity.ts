@@ -14,12 +14,12 @@ export class RoleEntity {
   name: string;
 
   @Column({ nullable: true, type: 'varchar' })
-  description?: string | null;
+  description: string | null;
 
   @Column({ default: true, name: 'is_active', type: 'boolean' })
   isActive: boolean;
 
-  @Column({ type: 'enum', enum: PolicyRoleType })
+  @Column({ type: 'enum', enum: PolicyRoleType, unique: true })
   type: PolicyRoleType;
 
   @CreateDateColumn({
@@ -37,10 +37,10 @@ export class RoleEntity {
   //#region Relations
 
   @OneToMany(() => PermissionEntity, (permission) => permission.role, { cascade: true })
-  permissions: PermissionEntity[];
+  permissions?: PermissionEntity[];
 
   @OneToMany(() => UserEntity, (user) => user.role)
-  users: UserEntity[];
+  users?: UserEntity[];
 
   //#endregion
 }

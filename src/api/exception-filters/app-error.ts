@@ -9,17 +9,18 @@ export class AppErrorExceptionFilter implements ExceptionFilter<AppError> {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const errorType = exception.type || exception.name;
-    const errObj: any = {
+    const errObj = {
       code: exception.code,
       type: exception.type,
-      message: exception.message
+      message: exception.message,
+      errors: exception.errors ?? []
     };
     let status = 500;
     switch (errorType) {
       case AppError.Types.INVALID_DATA:
       case AppError.Types.INVALID_ARGUMENT:
         status = 400;
-        errObj.errors = exception.errors;
+        errObj.message = 'Bad Request';
         break;
       case AppError.Types.UNAUTHORIZED:
         status = 401;

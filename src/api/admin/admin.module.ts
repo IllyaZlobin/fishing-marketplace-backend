@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 
-import { AdminAuthModule } from '~/api/admin/auth/auth.module';
+import { AuthModule } from '~/api/admin/auth/auth.module';
+import { RoleModule } from '~/api/admin/role/role.module';
 
 @Module({
-  imports: [AdminAuthModule]
+  imports: [AuthModule, RoleModule]
 })
 export class AdminModule {}
